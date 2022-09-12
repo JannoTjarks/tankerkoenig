@@ -29,7 +29,16 @@ func RequestAreaSearch(apiKey string, lat float32, lng float32, rad float32,
 	return getApiResponse(fullRequestUrl)
 }
 
-func RequestPrice(apiKey string, stationIds []string) string {
+func RequestPrice(apiKey string, stationId string) string {
+	var apiPath string = "/json/prices.php"
+
+	var apiQuery string = fmt.Sprintf("apikey=%s&ids=%s", apiKey, stationId)
+	var fullRequestUrl = fmt.Sprintf("%s%s?%s", apiDomain, apiPath, apiQuery)
+
+	return getApiResponse(fullRequestUrl)
+}
+
+func RequestManyPrices(apiKey string, stationIds []string) string {
 	var apiPath string = "/json/prices.php"
 	var stationIdsList string
 
